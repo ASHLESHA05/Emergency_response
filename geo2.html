@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geolocation Example</title>
+</head>
+<body>
+    <h1>Geolocation Example</h1>
+    <p id="demo">Click the button to get your current location.</p>
+    <button onclick="getLocation()">Get Location</button>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            // Send the geolocation data to the Python server using an image request
+            var img = new Image();
+            img.src = "http://your-python-server-url/endpoint?latitude=" + latitude + "&longitude=" + longitude;
+
+            // Display the geolocation data on the page
+            document.getElementById("demo").innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude;
+        }
+    </script>
+</body>
+</html>

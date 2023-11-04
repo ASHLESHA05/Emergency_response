@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Geo Location</title>
+    </head>
+    <body>
+        <span class="demo1"></span>
+        <span class="demo2"></span>
+
+        <script>
+            var x = document.querySelector(".demo1")
+            var y = document.querySelector(".demo2")
+            function getLocation(){
+                if(navigator.geolocation){
+                    navigator.geolocation.watchPosition(showPosition) // watchPosition : updates when device moves
+                    // getCurrentPosition : gives current position and does not change
+                }
+                else{
+                    x.innerHTML = "Geolocation is not supported by this browser"
+                }
+            }
+            function showPosition(Position){    // Position is any variable
+                x.innerHTML = Position.coords.latitude
+                y.innerHTML = Position.coords.longitude;
+            }
+            getLocation()
+        </script>
+
+    </body>
+</html>
